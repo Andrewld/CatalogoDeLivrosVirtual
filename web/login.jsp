@@ -9,14 +9,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/style.css" rel="stylesheet">
         <title>JSP Page</title>
     </head>
     
     
     <body>
-        <div class="container">
+        <div class="login">
             <h1>Realizar login</h1>
             <form method="post">
                 <div class="mb-3">
@@ -32,7 +32,6 @@
               <%
                   String usuario = request.getParameter("usuario");
                   String senha = request.getParameter("senha");
-                  //out.print("aaaaaaaaaaaa<br>"+usuario+"<br>");
                     
                   try {
                         if (usuario != null && senha != null){
@@ -42,18 +41,13 @@
                             Class.forName("com.mysql.cj.jdbc.Driver");
                             con = DriverManager.getConnection("jdbc:mysql://localhost/catalogo_biblioteca?useTimeZone=true&serverTimezone=UTC&user=root&password=");
                             st = con.createStatement();
-                            // rs = st.executeQuery("select * from usuario where username = 'andrehonorio''"+usuario+"'");
                             String str = "select * from usuario where username = '"+usuario+"' and senha = '"+senha+"'";
                             rs = st.executeQuery(str);
                             while(rs.next()){
-                            nomeUsuario = rs.getString(5);
-                            //out.println(rs.getString(5));
-                            rs.last();
-                            linhasRetornadas = rs.getRow();
-                            
+                                nomeUsuario = rs.getString(5);
+                                rs.last();
+                                linhasRetornadas = rs.getRow();
                             }
-                            
-                            //out.print(linhasRetornadas+"<br>");
                             
                             if (linhasRetornadas > 0)
                             {

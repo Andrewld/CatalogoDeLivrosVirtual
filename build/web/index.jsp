@@ -9,6 +9,8 @@
     String usuario = (String) session.getAttribute("Usuario");
 
     String nomeUsuario = "";
+    
+    String busca = request.getParameter("busca");
 
     String botaoAdministrativo = "";
     String botaoEditarLivro = "";
@@ -28,18 +30,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/style.css" rel="stylesheet">
         <title>Página Inicial - Catálogo Virtual</title>
     </head>
     <body>
-      <div class="container">
+      <div class="conteudo">
         <h1>Catálogo virtual</h1>
-        <% out.print(nomeUsuario); %>
-        
+        <div class="nome-do-usuario">
+          <% out.print(nomeUsuario); %>
+        </div>
         <div class="row mt-3">
             <form method="get" class="col-9">
-                <input class="form-control" name="busca" placeholder="buscar por título">
+                <input class="form-control" name="busca" placeholder="buscar por título" value="<%= busca != null ? busca : "" %>">
             </form>
             <div class="text-end col-3">
                 <% out.print(botaoAdministrativo); %>
@@ -62,7 +65,7 @@
                 try {       
                     int linhasRetornadas = 0;
                     
-                    String busca = request.getParameter("busca");
+
                     
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     con = DriverManager.getConnection("jdbc:mysql://localhost/catalogo_biblioteca?useTimeZone=true&serverTimezone=UTC&user=root&password=");
