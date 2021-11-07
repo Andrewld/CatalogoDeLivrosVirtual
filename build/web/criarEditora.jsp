@@ -36,22 +36,22 @@
         <form method="post">
             <label class="form-label">Nome da editora</label>
             <input type="text" class="form-control" id="nome" name="nome" >
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="submit" class="btn btn-azul">Salvar</button>
         </form>
         <%
             String nome = request.getParameter("nome");
 
             try {
-                    if (nome != null){
-                        
-                        Class.forName("com.mysql.cj.jdbc.Driver");
-                        con = DriverManager.getConnection("jdbc:mysql://localhost/catalogo_biblioteca?useTimeZone=true&serverTimezone=UTC&user=root&password=");
-                        st = con.createStatement();
-                        String str = "insert into editora (nome) values ('"+nome+"')";
-                        st.executeUpdate(str);
-                        
-                        response.sendRedirect("administrativo.jsp");
-                    }
+                if (nome != null){
+                    
+                    Class.forName("com.mysql.cj.jdbc.Driver");
+                    con = DriverManager.getConnection("jdbc:mysql://localhost/catalogo_biblioteca?useTimeZone=true&serverTimezone=UTC&user=root&password=");
+                    st = con.createStatement();
+                    String str = "insert into editora (nome) values ('"+nome+"')";
+                    st.executeUpdate(str);
+                    
+                    response.sendRedirect("administrativo.jsp");
+                }
                 } catch (Exception e) {
                     out.print(e);
                 }
