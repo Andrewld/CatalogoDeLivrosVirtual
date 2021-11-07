@@ -28,39 +28,33 @@
         <div class="nome-do-usuario">
             <% out.print(nomeUsuarioLogado); %>
         </div>
-            
-            <div class="mt-2">
-                <a class="btn btn-secondary btn-sm" href="administrativo.jsp">Voltar</a>
-            </div>
-            
-            <hr />
-            
-            <div class="mt-2">
-                <form method="post">
-                    <div class="mb-3">
-                      <label class="form-label">Nome da editora</label>
-                      <input type="text" class="form-control" id="nome" name="nome" >
-                    </div>
-                    <button type="submit" class="btn btn-primary">Salvar</button>
-              </form>
-                <%
-                    String nome = request.getParameter("nome");
 
-                    try {
-                          if (nome != null){
-                              
-                              Class.forName("com.mysql.cj.jdbc.Driver");
-                              con = DriverManager.getConnection("jdbc:mysql://localhost/catalogo_biblioteca?useTimeZone=true&serverTimezone=UTC&user=root&password=");
-                              st = con.createStatement();
-                              String str = "insert into editora (nome) values ('"+nome+"')";
-                              st.executeUpdate(str);
-                              
-                              response.sendRedirect("administrativo.jsp");
-                          }
-                        } catch (Exception e) {
-                            out.print(e);
-                        }
-                %>
-        </<div>
+        <a class="btn btn-cinza btn-sm" href="administrativo.jsp">Voltar</a>
+            
+        <hr />
+            
+        <form method="post">
+            <label class="form-label">Nome da editora</label>
+            <input type="text" class="form-control" id="nome" name="nome" >
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+        <%
+            String nome = request.getParameter("nome");
+
+            try {
+                    if (nome != null){
+                        
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                        con = DriverManager.getConnection("jdbc:mysql://localhost/catalogo_biblioteca?useTimeZone=true&serverTimezone=UTC&user=root&password=");
+                        st = con.createStatement();
+                        String str = "insert into editora (nome) values ('"+nome+"')";
+                        st.executeUpdate(str);
+                        
+                        response.sendRedirect("administrativo.jsp");
+                    }
+                } catch (Exception e) {
+                    out.print(e);
+                }
+        %>
     </body>
 </html>

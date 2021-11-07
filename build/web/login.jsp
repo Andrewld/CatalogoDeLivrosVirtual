@@ -13,21 +13,15 @@
         <link href="css/style.css" rel="stylesheet">
         <title>JSP Page</title>
     </head>
-    
-    
     <body>
         <div class="login">
             <h1>Realizar login</h1>
             <form method="post">
-                <div class="mb-3">
-                  <label for="usuario" class="form-label">Usuário</label>
+                  <label>Usuário</label>
                   <input type="text" class="form-control" id="usuario" name="usuario">
-                </div>
-                <div class="mb-3">
-                  <label for="senha" class="form-label">Senha</label>
+                  <label>Senha</label>
                   <input type="password" class="form-control" id="senha" name="senha">
-                </div>
-                <button type="submit" class="btn btn-primary">Entrar</button>
+                <button type="submit" class="btn btn-azul">Entrar</button>
               </form>
               <%
                   String usuario = request.getParameter("usuario");
@@ -62,7 +56,6 @@
                       } catch (Exception e) {
                           out.print(e);
                       }
-                    
               %>
     </body>
 </html>

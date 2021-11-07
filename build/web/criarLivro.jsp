@@ -35,62 +35,48 @@
         <div class="nome-do-usuario">
             <% out.print(nomeUsuarioLogado); %>
         </div>
-              
-        <div class="mt-2">
-            <a class="btn btn-secondary btn-sm" href="administrativo.jsp">Voltar</a>
-        </div>
+
+        <a class="btn btn-cinza btn-sm" href="administrativo.jsp">Voltar</a>
 
         <hr />
+        <form action="uploadImage" enctype="multipart/form-data" method="post">
+            <label class="form-label">Título</label>
+            <input type="text" class="form-control" id="titulo" name="titulo" required>
+        
+            <label class="form-label">Autor</label>
+            <input type="text" class="form-control" id="autor" name="autor"required>
 
-        <div class="mt-2">
-            <form action="uploadImage" enctype="multipart/form-data" method="post">
-                <div class="mb-3">
-                  <label class="form-label">Título</label>
-                  <input type="text" class="form-control" id="titulo" name="titulo" >
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Autor</label>
-                  <input type="text" class="form-control" id="autor" name="autor">
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Ano</label>
-                  <input type="text" class="form-control" id="ano" name="ano" >
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Editora</label>
+            <label class="form-label">Ano</label>
+            <input type="text" class="form-control" id="ano" name="ano" required>
 
-                    <select class="form-select" id="editora" name="editora">
-                        <% 
-                            try {       
-                                int linhasRetornadas = 0;
+            <label class="form-label">Preço</label>
+            <input type="text" class="form-control" id="preco" name="preco" required>
 
-                                Class.forName("com.mysql.cj.jdbc.Driver");
-                                con = DriverManager.getConnection("jdbc:mysql://localhost/catalogo_biblioteca?useTimeZone=true&serverTimezone=UTC&user=root&password=");
-                                st = con.createStatement();
-                                String str = "select * from editora";
-                                rs = st.executeQuery(str);
-                                  while(rs.next()){ %>
-                                    <option value="<%= rs.getString(1)%>"> <%= rs.getString(2) %> </option>
-                                <%
-                               }
-                           } catch (Exception e) {
-                               out.print(e);
-                           }
-                        %>
-                    </select>
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Preço</label>
-                  <input type="text" class="form-control" id="preco" name="preco" >
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Imagem da capa</label>
-                  <input class="form-control" type="file" id="imagem" name="imagem">
-                </div>
-                <button type="submit" class="btn btn-primary">Salvar</button>
-            </form>
-        </<div>
+            <label class="form-label">Editora</label>
+            <select class="form-select" id="editora" name="editora">
+                <% 
+                    try {       
+                        int linhasRetornadas = 0;
+
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                        con = DriverManager.getConnection("jdbc:mysql://localhost/catalogo_biblioteca?useTimeZone=true&serverTimezone=UTC&user=root&password=");
+                        st = con.createStatement();
+                        String str = "select * from editora";
+                        rs = st.executeQuery(str);
+                            while(rs.next()){ %>
+                            <option value="<%= rs.getString(1)%>"> <%= rs.getString(2) %> </option>
+                        <%
+                        }
+                    } catch (Exception e) {
+                        out.print(e);
+                    }
+                %>
+            </select>
+
+            <label class="form-label">Imagem da capa</label>
+            <input class="form-control" type="file" id="imagem" name="imagem" required>
+            
+            <button type="submit" class="btn btn-azul">Salvar</button>
+        </form>
     </body>
 </html>
-
-

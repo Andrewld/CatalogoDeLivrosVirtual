@@ -29,31 +29,25 @@
                 <% out.print(nomeUsuarioLogado); %>
             </div>
               
-            <div class="mt-2">
-                <a class="btn btn-secondary btn-sm" href="administrativo.jsp">Voltar</a>
-            </div>
+            <a class="btn btn-cinza btn-sm" href="administrativo.jsp">Voltar</a>
             
             <hr />
             
             <div class="mt-2">
                 <form method="post">
-                    <div class="mb-3">
-                      <label class="form-label">Nome completo</label>
-                      <input type="text" class="form-control" id="nome" name="nome" >
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Nome de usuário</label>
-                      <input type="text" class="form-control" id="username" name="username" >
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Perfil</label>
-                      <input type="text" class="form-control" id="perfil" name="perfil"  value="admin" readonly>
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Senha</label>
-                      <input type="password" class="form-control" id="senha" name="senha" >
-                    </div>
-                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <label class="form-label">Nome completo</label>
+                    <input type="text" class="form-control" id="nome" name="nome" required>
+
+                    <label class="form-label">Nome de usuário</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+
+                    <label class="form-label">Perfil</label>
+                    <input type="text" class="form-control" id="perfil" name="perfil"  value="admin" readonly required>
+
+                    <label class="form-label">Senha</label>
+                    <input type="password" class="form-control" id="senha" name="senha" required>
+
+                    <button type="submit" class="btn btn-azul">Salvar</button>
               </form>
                 <%
                     String username = request.getParameter("username");
@@ -78,8 +72,5 @@
                 %>
             </div>
         </<div>
-            
-            
-            
     </body>
 </html>

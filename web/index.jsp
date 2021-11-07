@@ -16,12 +16,12 @@
     String botaoEditarLivro = "";
     if (usuario != null)
     {
-        botaoAdministrativo = "<a href='administrativo.jsp' class='btn btn-primary'>Página administrativa</a>";
+        botaoAdministrativo = "<a href='administrativo.jsp' class='btn btn-azul'>Página administrativa</a>";
         nomeUsuario = usuario;
     }
     else
     {
-        botaoAdministrativo = "<a href='login.jsp' class='btn btn-secondary'>Login</a>";                
+        botaoAdministrativo = "<a href='login.jsp' class='btn btn-cinza'>Login</a>";                
         nomeUsuario = "Usuário não logado";
     }
 %>
@@ -40,7 +40,7 @@
         <div class="nome-do-usuario">
           <% out.print(nomeUsuario); %>
         </div>
-        <div class="row mt-3">
+        <div class="row">
             <form method="get" class="col-9">
                 <input class="form-control" name="busca" placeholder="buscar por título" value="<%= busca != null ? busca : "" %>">
             </form>
@@ -48,25 +48,22 @@
                 <% out.print(botaoAdministrativo); %>
             </div>
         </div>
-            
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Capa</th>
-              <th scope="col">Titulo</th>
-              <th scope="col">Autor</th>
-              <th scope="col">Preço</th>
-              <th scope="col">Ano</th>
-              <th scope="col">Editora</th>
+              <th>Capa</th>
+              <th>Titulo</th>
+              <th>Autor</th>
+              <th>Preço</th>
+              <th>Ano</th>
+              <th>Editora</th>
             </tr>
           </thead>
           <tbody>
             <% 
-                try {       
+                try {
                     int linhasRetornadas = 0;
-                    
 
-                    
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     con = DriverManager.getConnection("jdbc:mysql://localhost/catalogo_biblioteca?useTimeZone=true&serverTimezone=UTC&user=root&password=");
                     st = con.createStatement();
@@ -81,10 +78,10 @@
                         sqlQuery = "select * from livro l, editora e where e.id = l.id_editora";
                     
                     rs = st.executeQuery(sqlQuery);
-                      while(rs.next()){ %>
+                    while(rs.next()){ %>
 
                       <tr>
-                        <th scope="row">
+                        <th>
                             <img src="imagem.jsp?id=<%=rs.getString("l.id")%>" height="100px"/>
                             </th>
                         <td><%= rs.getString("l.titulo")%></td>
@@ -92,16 +89,15 @@
                         <td>R$ <%= rs.getString("l.preco")%></td>
                         <td><%= rs.getString("l.ano")%></td>
                         <td><%= rs.getString("e.nome")%></td>
-                        <% if (usuario != null) { out.print("<td><a href='editarLivro.jsp?id="+rs.getString("l.id")+"'class='btn btn-secondary'>Editar</a></td>"); } %>
+                        <% if (usuario != null) { out.print("<td><a href='editarLivro.jsp?id="+rs.getString("l.id")+"'class='btn btn-cinza'>Editar</a></td>"); } %>
                       </tr>
 
                     <%
-                   }
+                    }
                } catch (Exception e) {
                    out.print(e);
                }
             %>
-            
           </tbody>
         </table>
       </div>
